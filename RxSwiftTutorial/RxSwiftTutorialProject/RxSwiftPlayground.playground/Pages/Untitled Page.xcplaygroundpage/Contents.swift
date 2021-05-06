@@ -1,58 +1,58 @@
 import UIKit
 import RxSwift
 
-//'just'
-let observable = Observable.just(1)
-
-//'of' Allows you to create observable with set and array of different element
-//'of' will create observable to whole array
-let observable2 = Observable.of(1,2,3)
-
-observable2.subscribe { event in
-//    print(event)
-}
-
-//Using 'onNext' we dont need to unwrap event value
-observable2.subscribe(onNext: { element in
-//    print(element)
-})
-
-
-
-let observable3 = Observable.of([1,2,3])
-
-observable3.subscribe { event in
-    if let element = event.element{
-//        print(element)
-    }
-}
-
-
-
-//'from' means this observable will contain items of array 1,2,3,4
-let  observable4 = Observable.from([1,2,3,4])
-
-observable4.subscribe { event in
-    if let element = event.element{
-//        print(element)
-    }
-}
-
-//Using 'onNext' we dont need to unwrap event value
-observable4.subscribe(onNext: { element in
-//    print(element)
-})
-
-
-
-
-//Dispose the Subscriber
-
-//Dispose the subscription to avoid memory leak
-let subscription = observable4.subscribe(onNext: { element in
-//    print(element)
-})
-subscription.dispose()
+////'just'
+//let observable = Observable.just(1)
+//
+////'of' Allows you to create observable with set and array of different element
+////'of' will create observable to whole array
+//let observable2 = Observable.of(1,2,3)
+//
+//observable2.subscribe { event in
+////    print(event)
+//}
+//
+////Using 'onNext' we dont need to unwrap event value
+//observable2.subscribe(onNext: { element in
+////    print(element)
+//})
+//
+//
+//
+//let observable3 = Observable.of([1,2,3])
+//
+//observable3.subscribe { event in
+//    if let element = event.element{
+////        print(element)
+//    }
+//}
+//
+//
+//
+////'from' means this observable will contain items of array 1,2,3,4
+//let  observable4 = Observable.from([1,2,3,4])
+//
+//observable4.subscribe { event in
+//    if let element = event.element{
+////        print(element)
+//    }
+//}
+//
+////Using 'onNext' we dont need to unwrap event value
+//observable4.subscribe(onNext: { element in
+////    print(element)
+//})
+//
+//
+//
+//
+////Dispose the Subscriber
+//
+////Dispose the subscription to avoid memory leak
+//let subscription = observable4.subscribe(onNext: { element in
+////    print(element)
+//})
+//subscription.dispose()
 
 
 //Use DisposeBag to dispose the Subscriber
@@ -81,9 +81,9 @@ Observable<String>.create { observer in
 
 //Subjects: They are observables and the observer
 //example of subject is Newspaper: It gets the news from someone and then it spread to other people(subscriber).
-//Types of Subject : Behavior Subject, Replay Subject, Publish subject, Variable, Behavior Relay
+//Types of Subject : Behavior Subject, Replay Subject, Publish subject, Variable, BehaviorRelay
 
-//Publish Subject
+//1. Publish Subject
 let subject = PublishSubject<String>()
 
 //Event before subscriber will not work
@@ -126,8 +126,9 @@ replaySubject.onNext("i m 1")
 replaySubject.onNext("i m 2")
 replaySubject.onNext("i m 3")
 
-replaySubject.subscribe {
-    print($0)
+replaySubject.subscribe { event in
+    print(event)
+//    print($0)
 }
 
 replaySubject.onNext("i m 4")
@@ -138,6 +139,9 @@ print("subscriber 2")
 replaySubject.subscribe {
     print($0)
 }
+
+//TODO: check
+replaySubject.onNext("i m 7")
 
 
 //3. Variables (subjects)
