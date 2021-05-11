@@ -15,3 +15,11 @@ Filtering Operators,
 * Take While
 * Take Until
 
+
+Transforming Operators,
+
+* To Array
+* Map
+* Flat Map
+* Flat Map Latest
+
